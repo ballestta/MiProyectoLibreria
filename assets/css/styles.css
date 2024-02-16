@@ -1,0 +1,1117 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@500&family=Montserrat:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(230, 62%, 56%);
+  --title-color: hsl(230, 70%, 16%);
+  --text-color: hsl(230, 16%, 45%);
+  --border-color: hsl(230, 50%, 90%);
+  --white-color: hsl(0, 0%, 100%);
+  --body-color: hsl(230, 100%, 96%);
+  --container-color: hsl(230, 100%, 97%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --second-font: "Montagu Slab", serif;
+  --biggest-font-size: 2rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 3.5rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: background-color .4s;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--title-color);
+  font-family: var(--second-font);
+  font-weight: var(--font-medium);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== THEME ===============*/
+/*========== Variables Dark theme ==========*/
+body.dark-theme{
+  --title-color: hsl(230, 48%, 85%);
+  --text-color: hsl(230, 16%, 70%);
+  --border-color: hsl(230, 12%, 18%);
+  --body-color: hsl(230, 12%, 8%);
+  --container-color: hsl(230, 12%, 12%);
+}
+
+/*========== 
+Color changes in some parts of 
+the website, in dark theme
+==========*/
+
+.dark-theme .shadow-header{
+    box-shadow: 0 2px 16px hsla(0, 0%, 0%, .4);
+}
+
+.dark-theme .navMenu{
+    box-shadow: 0 -8px 32px hsla(0, 0%, 0%, .4);
+}
+
+.dark-theme .scrollup{
+    box-shadow: 0 2px 8px hsla(0, 0%, 0%, .4);
+}
+
+.dark-theme .search{
+    background-color: hsla(230, 12%, 8%, .6);
+}
+
+.dark-theme .login{
+    background-color: hsla(230, 12%, 8%, .6);
+}
+
+.dark-theme::-webkit-scrollbar{
+    background-color: hsl(230, 16%, 15%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb{
+    background-color: hsl(230, 16%, 25%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb:hover{
+    background-color: hsl(230, 16%, 35%);
+}
+
+
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 100%;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 1rem;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: var(--h1-font-size);
+  font-family: var(--second-font);
+  margin-bottom: 2rem;
+}
+
+.main {
+  overflow: hidden; /* For animation ScrollReveal */
+}
+
+/***** HEADER Y NAV *****/
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--body-color);
+    z-index: var(--z-fixed);
+    transition: box-shadow .4s, background-color .4s;
+}
+
+.nav{
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navLogo{
+    display: inline-flex;
+    align-items: center;
+    column-gap: .5rem;
+    color: var(--first-color);
+    font-weight: var(--font-medium);
+}
+.navLogo i{
+    font-size: 1.25rem;
+}
+
+/* BREAKPOINT NAV MOVILE*/
+
+/* Navegación en moviles */
+@media screen and (max-width: 950px){
+    .navMenu{
+       position: fixed;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       width: 100%;
+       background-color: var(--container-color);
+       box-shadow: 0 -8px 32px hsl(0, 0%, 0%, .1);
+       padding: 1.25rem 4rem;
+       transition: background-color .4s;
+    }
+    .navLink span{
+        display: none;
+    }
+    .navList{
+        display: flex;
+        justify-content: space-between;
+    }
+    .navLink{
+        color: var(--text-color);
+        transition: color .4s;
+    }
+    
+    .navLink i{
+        display: inline;
+        font-size: 1.25rem;
+    }
+    .navLink:hover{
+        color: var(--first-color);
+    }
+    .navActions{
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+    .navActions i{
+        font-size: 1.25rem;
+        color: var(--title-color);
+        cursor: pointer;
+        transition: color .4s;
+    }
+    .navActions i:hover{
+        color:var(--first-color)
+    }
+}
+
+/* Add shadow header */
+.shadow-header{
+    box-shadow: 0 2px 16px hsl(0, 0%, 0%, .1);
+}
+
+/*Active link*/
+.active-link{
+    color: var(--first-color);
+}
+
+
+    /**** SEARCH ****/
+    .search{
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: var(--z-fixed);
+        background-color: hsl(230, 12%, 96%, .6);
+        backdrop-filter: blur(16px);
+        padding:  8rem 1.5rem;
+        transition: top .4s;
+    }
+    .searchForm{
+        display: flex;
+        align-items: center;
+        column-gap: .5rem;
+        background-color: var(--container-color);
+        border: 2px solid var(var(--border-color));
+        padding-inline: 1rem;
+    }
+
+    .searchIcon{
+        font-size: 1.25rem;
+        color: var(--title-color);
+    }
+    .searchInput{
+        width: 100%;
+        padding-block: 1rem;
+        background-color: var(--container-color);
+        color: var(--text-color);
+    }
+    .searchClose{
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        font-size: 2rem;
+        color: var(--title-color);
+        cursor: pointer;
+    }
+
+    /* SHOW SEARCH */
+
+    .showSearch{
+        top: 0;
+
+    }
+
+    /*******LOG IN*******/
+    .login{
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: var(--z-fixed);
+        background-color: hsl(230, 12%, 96%, .6);
+        backdrop-filter: blur(16px);
+        align-items: center;
+        padding: 1.5rem;
+        text-align: center;
+        transition: top .4s;
+    }
+    .loginForm{
+        background-color: var(--container-color);
+        padding: 2rem 1.5rem;
+        border: 2px solid var(--border-color);
+        row-gap: 1.25rem;
+    }
+    .loginTitle{
+        font-size: var(--h2-font-size);
+    }
+    .loginGroup{
+        row-gap: 1.25rem;
+    }
+    .loginLabel{
+        display: block;
+        text-align: initial;
+        color: var(--title-color);
+        font-weight: var(--font-medium);
+        margin-bottom: .25rem;
+    }
+    .loginInput{
+        width: 100%;
+        background-color: var(--container-color);
+        border: 2px solid var(--border-color);
+        padding: 1rem;
+        color: var(--text-color); 
+    }
+
+    .loginSignUp, 
+    .loginForgot{
+        display: block;
+        font-size: var(--small-font-size);
+    }
+
+    .loginSignUp{
+        margin-bottom: .5rem;
+    }
+    .loginSignUp a{
+        color: var(--first-color);
+        font-weight: var(--font-medium);
+    }
+
+    .loginForgot{
+        color: var(--first-color);
+        margin-bottom: 1.25rem;
+    }
+    .loginButton{
+        width: 60%;
+        cursor: pointer;
+    }
+
+    .loginClose{
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        font-size: 2rem;
+        color: var(--title-color);
+        cursor: pointer;
+    }
+
+    /* SHOW LOGIN */
+    .showLogin{
+        top: 0;
+    }
+
+    /* BUTTON */
+    .button{
+        display: inline-block;
+        background-color: var(--first-color);
+        color: var(--white-color);
+        font-weight: var(--font-semi-bold);
+        padding: 1rem 1.5rem;
+        transition: box-shadow .4s;
+    }
+
+    .button:hover{
+        box-shadow: 0 4px 32px hsl(230, 72%, 32%, .4)
+    }
+
+    /*****SERVICES*****/
+    .servicesContainer{
+        row-gap: 3rem;
+        margin-bottom: 4rem;
+    }
+    .servicesCard{
+        text-align: center;
+    }
+    .servicesCard i{
+        display: block;
+        font-size: 3rem;
+        color: var(--first-color);
+        margin-bottom: 1rem;
+    }
+    .servicesTitle{
+        font-size: var(--h3-font-size);
+        
+    }
+
+    /*****HOME******/
+    .homeSwiper{
+        margin: initial;
+    }
+
+    .homeContainer{
+        padding-top: 2rem;
+        row-gap: 2.5rem;
+    }
+    .homeData{
+        text-align: center;
+    }
+
+    .homeTitle{
+        font-size: var(--biggest-font-size);
+        margin-bottom: 1rem;
+    }
+    .homeDescription{
+        margin-bottom: 2rem;
+    }
+    .homeImages{
+        display: grid;
+    }
+    .homeArticle, .homeImg{
+        width: 220px;
+        transition: scale .4s;
+    }
+    .homeArticle{
+        scale: .8;
+    }
+
+
+    /* SWIPER CLASS */
+
+    .swiper-slide-active,
+    .swiper-slide-duplicate-active{
+        scale: 1;
+    }
+
+    /******* FEATURED *****/
+
+    .featuredCard{
+        position:relative;
+        text-align: center;
+        background-color: var(--container-color);
+        padding: 2rem;
+        overflow: hidden;
+        border: 2px solid var(--border-color);
+        transition: border .4s, background-color .4s;
+    }
+
+    .featuredImg{
+        width: 150px;
+        margin: 0 auto .75rem;
+    }
+    .featuredTitle{
+        font-size: var(--h2-font-size);
+        margin-bottom: .5rem;
+    }
+
+    .featuredPrices{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: .75rem;
+        margin-bottom: 1.25rem;
+    }
+    .featuredDiscount{
+        color: var(--title-color);
+    }
+
+    .featuredPrice{
+        font-size: var(--small-font-size);
+        text-decoration: line-through;
+    }
+    .featuredCard .button{
+        cursor: pointer;
+    }
+
+    .featuredActions{
+        display: inline-flex;
+        flex-direction: column;
+        row-gap: .75rem;
+        position: absolute;
+        top: 2rem;
+        right: -1.5rem;
+        transition: right .4s;
+    }
+
+    .featuredActions button{
+        background: none;
+        font-size: 1.25rem;
+        color: var(--first-color);
+        cursor: pointer;
+    }
+
+    .featuredCard:hover .featuredActions{
+        right:1.5rem;
+    }
+
+    /* SWIPER CLASS */
+    .swiper-button-prev::after,
+    .swiper-button-next::after{
+        content: '';
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next{
+        width: initial;
+        height: initial;
+        background-color: var(--container-color);
+        border: 2px solid var(--border-color);
+        padding: .5rem;
+        font-size: 1.5rem;
+        color: var(--first-color);
+        transition: border .4s background-color .4s;
+    }
+
+    /******DISCOUNT*****/
+    .discountContainer{
+        row-gap: 3.5rem;
+    }
+
+    .discountData{
+        text-align: center;
+    }
+    .discountTitle{
+        margin-bottom: 1rem;
+    }
+    .discountDescription{
+        margin-bottom: 2rem;
+    }
+
+    .discountImages{
+        display: flex;
+        justify-content: center;
+    }
+
+    .discountImg1,
+    .discountImg2{
+        width: 170px;
+    }
+
+    .discountImg1{
+        transform: translateX(1rem) rotate(-10deg);
+    }
+    .discountImg2{
+        transform: translateX(-1rem) rotate(10deg);
+    }
+
+
+
+     /******NUEVO*****/
+
+     .newCard{
+        display: flex;
+        align-items: center;
+        column-gap: 2.5rem;
+        background-color: var(--container-color);
+        padding: 1.5rem 1rem;
+        color: var(--text-color);
+        border: 2px solid var(--border-color);
+        transition: border .4s, background-color .4s;
+     }
+
+     .newCard:hover{
+        border: 2px solid var(--text-color);
+     }
+
+     .newImg{
+        width: 100px;
+        max-height: 130px;
+     }
+
+     .newTitle{
+        font-size: var(--h2-font-size);
+        margin-bottom: .5rem;
+     }
+
+     .newPrices{
+        display: flex;
+        align-items: center;
+        column-gap: .75rem;
+        margin-bottom: .75rem;
+     }
+
+     .newDiscount{
+        color: var(--title-color);
+     }
+
+     .newPrice{
+        font-size: var(--small-font-size);
+        text-decoration: line-through;
+     }
+
+     .newStars{
+        color: var(--first-color);
+     }
+     .newSwiper:nth-child(1){
+        margin-bottom: 2rem;
+     }
+
+    /******JOIN*****/
+    .joinContainer{
+        position: relative;
+        padding-block: 3rem;
+    }
+
+    .joinBg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .joinData{
+        position: relative;
+    }
+
+    .joinTitle{
+        color: var(--white-color);
+    }
+
+    .joinForm{
+        display: grid;
+        row-gap: 1rem;
+    }
+
+    .joinInput{
+        padding: 1.25rem 1rem;
+        background-color: var(--body-color);
+        color: var(--title-color);
+        transition: background-color .4s;
+    }
+
+    .joinInput::placeholder{
+        color: var(--text-color);
+    }
+
+    .joinButton{
+        padding-block: 1.25rem;
+        cursor: pointer;
+    }
+
+       /******TESTIMONIAL*****/
+
+       .testimonialCard{
+        text-align: center;
+        background-color: var(--container-color);
+        padding: 2rem 3rem 2.5rem;
+        border: 2px solid var(--border-color);
+        transition: border .4s, background-color .4s;
+       }
+
+       .testimonialImg{
+        width: 100px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+       }
+
+       .testimonialTitle{
+        font-size: var(--h2-font-size);
+        margin-bottom: .75rem;
+       }
+
+       .testimonialDescription{
+        font-size: var(--small-font-size);
+        margin-bottom: 1.25rem;
+       }
+
+       .testimonialStars{
+        color: var(--first-color);
+       }
+
+
+       /******FOOTER*****/
+
+       .footer{
+        padding-block: 4rem 6rem;
+       }
+
+       .footerContainer{
+        row-gap: 3rem;
+       }
+       .footerContainerTitle{
+        text-align: center;
+        }
+
+       .footerLogo{
+        display: inline-flex;
+        align-items: center;
+        column-gap: .5rem;
+        color: var(--first-color);
+        font-size: var(--h3-font-size);
+        font-family: var(--second-font);
+        margin-bottom: 1.25rem;
+       }
+
+       .footerLogo i{
+        font-size: 1.25rem;
+       }
+       
+
+       .footerData {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 5rem 1rem;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .footerData {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+    }
+    
+
+       .footerTitle{
+        font-size: var(--h3-font-size);
+        margin-bottom: 1.25rem;
+       }
+
+       .footerLinks{
+        display: grid;
+        row-gap: .5rem;
+       }
+
+       .footerLink{
+        color: var(--text-color);
+        transition: color .4s;
+       }
+
+       .footerLink:hover{
+        color: var(--first-color);
+       }
+
+       .footerInfo{
+        font-style: normal;
+       }
+
+       .footerSocial{
+        display: flex;
+        column-gap: 1.25rem;
+       }
+
+       
+
+       .footerSocialLinks{
+        font-size: 1.25rem;
+        color: var(--first-color);
+       }
+
+       .footerCopy{
+        display: block;
+        margin-top: 5rem;
+        text-align: center;
+        font-size: var(--small-font-size);
+       }
+
+       /******SCROLL BAR*****/
+
+       ::-webkit-scrollbar{
+        width: .6rem;
+        border-radius: .5rem;
+        background-color: hsl(230, 16%, 85%);
+       }
+
+       ::-webkit-scrollbar-thumb{
+        border-radius: .5rem;
+        background-color: hsl(230, 16%, 65%);
+       }
+
+       ::-webkit-scrollbar-thumb:hover{
+        background-color: hsl(230, 16%, 55%);
+       }
+
+       /******SCROLL UP*****/
+       .scrollup{
+        position: fixed;
+        right: 1rem;
+        bottom: -50%;
+        background-color: var(--container-color);
+        box-shadow: 0 2px 8px hsla(0, 0%, 0%, .1);
+        display: inline-flex;
+        padding: 6px;
+        font-size: 1.25rem;
+        color: var(--title-color);
+        z-index: var(--z-tooltip);
+        transition: botom .4s, transform .4s, background-color .4s;
+       }
+
+       .scrollup:hover{
+        transform: translateY(-.5rem);
+       }
+
+       /*SHOW SCRUPP UP*/
+
+       .show-scroll{
+        bottom: 6rem;
+       }
+
+
+       /******** BREAKPOINTS ********/
+
+       /* For small devices */
+       @media screen and (max-width: 320px){
+        .container{
+            margin-inline: 1rem;
+        }
+        
+        .navMenu{
+            padding-inline: 3rem;
+        }
+
+        .discountImg1,
+        .discountImg2{
+            width: 140px;
+        }
+
+        .newCard{
+            flex-direction: column;
+        }
+
+        .testimonialCard{
+            padding-inline: 1rem;
+        }
+
+        .footerData{
+            grid-template-columns: 1fr;
+            row-gap: 2rem;
+        }
+       }
+       /* For medium devices */
+
+       @media screen and (min-width: 450px){
+        
+        .featuredCard{
+            width: 290px;
+        }
+
+        .newCard{
+            width: 390px;
+        }
+
+        .testimonialCard{
+            width: 320px;
+        }
+
+       }
+
+
+       @media screen and (min-width: 576px){
+        .searchForm{
+            width: 500px;
+            margin-inline: auto;
+        }
+
+        .loginForm{
+            width: 400px;
+            justify-self: center;
+        }
+        
+        .searchClose, 
+        .loginClose {
+            width: max-content;
+            top: 4rem;
+            left: 0;
+            right: 0;
+            margin-inline: auto;
+        }
+
+        .joinForm{
+            width: 328px;
+            justify-self: center;
+        }
+
+        .footerData{
+            grid-template-columns: repeat(3, max-content);
+        }
+    
+        }
+
+
+        @media screen and (min-width: 768px){
+            .homeData{
+                width: 420px;
+                justify-self: center;
+            }
+
+            .servicesContainer{
+                grid-template-columns: repeat(3, max-content);
+                justify-content: center;
+                column-gap: 4rem;
+            }
+
+            .footerContainer{
+                grid-template-columns: repeat(2, max-content);
+                justify-content: space-between;
+            }
+            
+
+        }
+
+       /* For large devices */
+
+       /* Navegación en más de 951px*/
+        @media screen and (min-width: 951px){
+            .navMenu{
+                width:auto;
+                padding: 1.25rem 4rem;
+                }
+            
+            .navList{
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+            }
+            .navLink{
+                color: var(--text-color);
+                transition: color .4s;
+            }
+            .navLink span{
+                display: inline;
+            }
+            
+            .navLink i{
+                display: none;
+                font-size: 1.25rem;
+            }
+            .navLink:hover{
+                color: var(--first-color);
+            }
+            .navActions{
+                display: flex;
+                align-items: center;
+                column-gap: 1rem;
+            }
+            .navActions i{
+                font-size: 1.25rem;
+                color: var(--title-color);
+                cursor: pointer;
+                transition: color .4s;
+            }
+            .navActions i:hover{
+                color:var(--first-color)
+            }
+            }
+    
+    
+            @media screen and (min-width: 1150px){
+                .section{
+                    padding-block: 7rem 2rem;
+                }
+                .nav{
+                    height: calc(var(--header-height) + 2rem);
+                    column-gap: 4rem;
+                }
+
+                .dark-theme .navMenu{
+                    box-shadow: none;
+                }
+
+                .homeData{
+                    width: initial;
+                }
+
+                .servicesContainer{
+                    column-gap: 10rem;
+                }
+
+                .servicesCard i{
+                    font-size: 3.5rem;
+                }
+
+                .featuredContainer{
+                    padding-top: 2rem;
+                }
+                .featuredTitle{
+                    font-size: var(--h3-font-size);
+                }
+                .discountContainer{
+                    grid-template-columns: 615px 500px;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .discountData{
+                    order: 1;
+                }
+
+                .discountData, 
+                .discountTitle{
+                    text-align: initial;
+                }
+
+                .discountDescription{
+                    margin-bottom: 3.5rem;
+                }
+                .discountImg1,
+                .discountImg2{
+                    width: 300px;
+                }
+
+                .newContainer{
+                    padding-top: 2rem;
+                }
+                .newCard{
+                    padding: 1.5rem;
+                }
+                .newTitle{
+                    font-size: var(--h3-font-size);
+                }
+
+                .joinBg{
+                    object-position: 0 -12rem;
+                }
+
+                .testimonialContainer{
+                    padding-top: 2rem;
+                }
+
+                .testimonialCard{
+                    padding-inline: 2rem;
+                }
+                .testimonialTitle{
+                    font-size: var(--h3-font-size);
+                }
+                .testimonialDescription{
+                    font-size: var(--normal-font-size);
+                }
+
+                .footer{
+                    padding-block: 6rem 3rem;
+                }
+                
+                .footerData{
+                    grid-template-columns: repeat(4, max-content);
+                    column-gap: 4.5rem;
+                }
+
+                .footerLogo,
+                .footerTitle {
+                    font-size: var(--h2-font-size);
+                    margin-bottom: 1.5rem;
+                }
+
+                .footerLinks{
+                    row-gap: 1rem;
+                }
+                .footerSocial{
+                    column-gap: 1.5rem;
+                }
+                .footerSocialLinks{
+                    font-size: 1.5rem;
+                }
+                .footerCopy{
+                    margin-top: 7.5rem;
+                }
+
+                .scrollup{
+                    right: 3rem;
+                }
+                .show-scroll{
+                    bottom: 3rem;
+                }
+            }
+
+            @media screen and (min-widht: 1220px){
+                .container{
+                    margin-inline: auto;
+                }
+                .homeContainer{
+                    grid-template-columns: 435px 745px;
+                    align-items: center;
+                    padding-block: 7rem 2rem;
+                }
+
+                .homeData{
+                    text-align: initial;
+                }
+                .homeDescription{
+                    margin-bottom: 4rem;
+                }
+                .homeArticle, 
+                .homeImg{
+                    width: 290px;
+                }
+            }
